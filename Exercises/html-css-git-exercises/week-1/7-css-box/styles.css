@@ -3,4 +3,20 @@
   border: 1px solid #4491db;
   border-radius: 4px;
   background: #fff;
+  padding: 5px;
+  margin: 5px;
+}
+* {
+  border: 1px solid red;
+}
+.pages {
+  padding: 30px;
+  margin: 25px;
+}
+.pages__showing {
+  padding: 5px;
+}
+.site-wrapper {
+  margin: 5px;
+  padding: 5px;
 }
