@@ -12,8 +12,8 @@ time {
   border-color: transparent;
   border-left-color: blue;
 }
-.message__time--old {
-  opacity: 0.5;
+.message:first-child {
+  opacity: 0.3;
 }
 .message {
   line-height: 30pt;
