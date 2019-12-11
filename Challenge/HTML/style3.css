@@ -34,12 +34,13 @@ a {
   text-decoration: none;
 }
 nav {
-  height: 80px;
+  height: 40px;
   width: 100%;
   margin: auto;
   padding: auto;
-  padding-top: 30px;
-  margin-right: 10%;
+  padding-top: 15px;
+  margin-right: 0%;
+  margin-left: 0%;
 }
 .t1 {
   width: 80%;
@@ -47,9 +48,23 @@ nav {
   margin-right: 10%;
   margin-left: 10%;
 }
+.t2 {
+  width: 100%;
+}
 table {
   caption-side: bottom;
 }
 td {
   padding: 10px;
+}
+
+.pipe {
+  border-left: 1px solid #97a9ad;
+}
+.readmore {
+  background-color: #7c8b90;
+  border-radius: 0px;
+  padding: 10px 15px 10px 15px;
+  font-weight: bold;
+  color: black;
 }
