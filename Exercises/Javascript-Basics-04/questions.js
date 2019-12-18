@@ -5,7 +5,7 @@ const replaceCharacterE = text => {
   return text.replace("e", " ");
 };
 const concatString = (text1, text2) => {
-  return text1 + text2;
+  return text1.concat(text2);
 };
 const showChar5 = text => {
   return text.charAt(4);
@@ -47,8 +47,7 @@ const absoluteValue = num => {
 };
 const absoluteValueArray = array => {
   return array.map(element => {
-    if (element < 0) element = element * -1;
-    return element;
+    return Math.abs(element);
   });
 };
 
