@@ -3,7 +3,7 @@
 // else document.getElementById("texte").style.opacity = "1.0";
 //}
 var x = document.querySelectorAll("a");
-for (let i = 0; i < 2; i++) {
+for (let i = 0; i < x.length; i++) {
   x[i].addEventListener("click", function() {
     if (x[i].id == "show")
       document.getElementById("texte").style.opacity = "1.0";
