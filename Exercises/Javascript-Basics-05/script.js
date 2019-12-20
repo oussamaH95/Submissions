@@ -1,2 +1,2 @@
-let name = window.prompt("enter ur name");
+let name = prompt("enter ur name");
 window.alert("Hello " + name);
