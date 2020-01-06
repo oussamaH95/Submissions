@@ -1,7 +1,8 @@
 let str = "";
-for (let i = 1; i <= 12; i++) {
-  str = str + i + ":";
-  for (let j = 1; j <= 12; j++) str = str + " " + i * j;
-  str = str + "\n";
+let isPrime = true;
+for (let i = 2; i <= 30; i++) {
+  isPrime = true;
+  for (let j = 2; j < i; j++) if (i % j == 0 && isPrime) isPrime = false;
+  if (isPrime) str = str + " " + i;
 }
 window.alert(str);
