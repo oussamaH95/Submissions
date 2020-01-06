@@ -1,7 +1,7 @@
-let n = prompt("enter a number");
-let sum = 0;
-for (let i = 1; i <= n; i++) {
-  if (i % 3 == 0 || i % 5 == 0) sum = sum + i;
+let str = "";
+for (let i = 1; i <= 12; i++) {
+  str = str + i + ":";
+  for (let j = 1; j <= 12; j++) str = str + " " + i * j;
+  str = str + "\n";
 }
-
-window.alert("ur sum is " + sum);
+window.alert(str);
