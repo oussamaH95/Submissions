@@ -1,21 +1,84 @@
 .app {
   height: 100vh;
-  width: 100vw;
   transition: background-color 1s ease-in;
 }
 
 .app__header,
 .app__main {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
   font-family: "Raleway", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /*  Search bar */
+header {
+  width: 100%;
+  background-color: #788ddb;
+  height: 12%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+input {
+  width: 200px;
+  height: 35px;
+  outline: 0;
+  border: none;
+  background-color: transparent;
+}
+button {
+  width: 150px;
+  height: 40px;
+  outline: 0;
+  border: none;
+  background-color: #635dc7;
+  color: black;
+  font-weight: lighter;
+}
 
 /* Current weather */
+body {
+  background-color: #98c6f6;
+}
+.mainImg {
+  width: 200px;
+  height: 200px;
+}
+caption {
+  color: white;
+}
+.mainWeather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.allWeather {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 90%;
+  margin: auto;
+}
+img {
+  height: 70px;
+}
+@media only screen and (max-width: 400px) {
+  .allWeather {
+    flex-direction: column;
+  }
+  img {
+    height: 250px;
+  }
+}
+.weatherTime {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 140px;
+}
