@@ -1,72 +1,68 @@
 import React, { Component } from "react";
 import "./App.css";
-import mostlycloudy from "./img/weather-icons/mostlycloudy.svg";
+import MainWeather from "./mainWeather.js";
+import WeatherHeader from "./weatherHeader.js";
+import AllWeather from "./allWeather.js";
+import getImageByWeatherId from "./imgFunction";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      weatherlist: []
+    };
   }
+  componentDidMount() {
+    this.setState({
+      weatherStatus: "------",
+      weatherImage: getImageByWeatherId(-1),
+      tempHigh: "------",
+      tempLow: "------",
+      humidity: "------",
+      pressure: "------"
+    });
+  }
+  setValuetoMainFile = async city => {
+    const response = await fetch(
+      `http://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=8&units=metric&appid=c8f16d4d0855d8a68c37eafb434ff06d`
+    );
+    const realWeather = await response.json();
+    if (realWeather.cod == 200) {
+      this.setState({
+        weatherStatus: realWeather.list[0].weather[0].description,
+        weatherImage: getImageByWeatherId(realWeather.list[0].weather[0].id),
+        tempHigh: Math.floor(realWeather.list[0].main.temp_max),
+        tempLow: Math.floor(realWeather.list[0].main.temp_min),
+        humidity: realWeather.list[0].main.pressure,
+        pressure: realWeather.list[0].main.humidity,
+        weatherlist: realWeather.list.slice(1, 8)
+      });
+    } else alert("wrong city name !");
+  };
 
   render() {
     return (
       <div className="app">
         <header className="app__header">
-          <input type="text" placeholder="Enter a Location"></input>
-          <button>Find Weather</button>
+          <WeatherHeader setValuetoMainFile={this.setValuetoMainFile} />
         </header>
         <main className="app__main">
-          <div class="mainWeather">
-            <img class="mainImg" src={mostlycloudy}></img>
-            <caption>overcast cloud</caption>
-            <p>
-              <strong>temperature </strong> 10°C to 11°C
-            </p>
-            <p>
-              <strong>Humedty </strong> 78% <strong>pressure </strong> 100848
-            </p>
-          </div>
+          <MainWeather
+            status={this.state.weatherStatus}
+            tempHigh={this.state.tempHigh}
+            tempLow={this.state.tempLow}
+            humidity={this.state.humidity}
+            pressure={this.state.pressure}
+            img={this.state.weatherImage}
+          />
           <div class="allWeather">
-            <div class="weatherTime">
-              <time>03:00</time>
-              <img src={mostlycloudy}></img>
-              <p>8°C</p>
-            </div>
-            <div class="weatherTime">
-              <time>03:00</time>
-              <img src={mostlycloudy}></img>
-              <p>8°C</p>
-            </div>
-            <div class="weatherTime">
-              <time>03:00</time>
-              <img src={mostlycloudy}></img>
-              <p>8°C</p>
-            </div>
-            <div class="weatherTime">
-              <time>03:00</time>
-              <img src={mostlycloudy}></img>
-              <p>8°C</p>
-            </div>
-            <div class="weatherTime">
-              <time>03:00</time>
-              <img src={mostlycloudy}></img>
-              <p>8°C</p>
-            </div>
-            <div class="weatherTime">
-              <time>03:00</time>
-              <img src={mostlycloudy}></img>
-              <p>8°C</p>
-            </div>
-            <div class="weatherTime">
-              <time>03:00</time>
-              <img src={mostlycloudy}></img>
-              <p>8°C</p>
-            </div>
+            {this.state.weatherlist.map((item, value) => {
+              return <AllWeather key={value} list={item} />;
+            })}
           </div>
         </main>
       </div>
     );
   }
 }
-
 export default App;
