@@ -68,13 +68,19 @@ caption {
 img {
   height: 70px;
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 600px) {
   .allWeather {
     flex-direction: column;
   }
   img {
     height: 250px;
   }
+  input {
+    width: 120px;
+  }
+}
+button {
+  width: 150px;
 }
 .weatherTime {
   display: flex;

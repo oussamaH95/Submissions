@@ -28,6 +28,12 @@ class App extends Component {
     );
     const realWeather = await response.json();
     if (realWeather.cod == 200) {
+      if (realWeather.list[0].weather[0].id >= 800) {
+        document.body.style.backgroundColor = "#98c6f6";
+      } else {
+        document.body.style.backgroundColor = "#1f5085";
+      }
+
       this.setState({
         weatherStatus: realWeather.list[0].weather[0].description,
         weatherImage: getImageByWeatherId(realWeather.list[0].weather[0].id),
