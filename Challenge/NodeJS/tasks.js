@@ -39,7 +39,9 @@ function onDataReceived(text) {
   } else if (text.startsWith("hello")) {
     hello(text);
   } else if (text === "help\n") {
-    console.log("type 'quit' or 'exit' for exit\ntype 'hello' to say 'hello!'");
+    console.log(
+      "type 'quit' or 'exit' for exit.\ntype 'hello' to say 'hello!'.\ntype hello with any thing to to get this text with '!'."
+    );
   } else {
     unknownCommand(text);
   }
