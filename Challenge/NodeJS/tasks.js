@@ -10,6 +10,7 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
+todoList = ["wakeUp", "goToCodi", "getExperience", "getMoreExperience"];
 function startApp(name) {
   process.stdin.resume();
   process.stdin.setEncoding("utf8");
@@ -44,6 +45,8 @@ function onDataReceived(text) {
     );
   } else if (text.startsWith("list\n")) {
     list();
+  } else if (text.startsWith("add")) {
+    add(text);
   } else {
     unknownCommand(text);
   }
@@ -80,8 +83,12 @@ function quit() {
   process.exit();
 }
 function list() {
-  todoList = ["wakeUp", "goToCodi", "getExperience", "getMoreExperience"];
-  for (let i = 1; i <= 4; i++) console.log(i + "- " + todoList[i - 1] + "\n");
+  for (let i = 1; i <= todoList.length; i++)
+    console.log(i + "- " + todoList[i - 1] + "\n");
+}
+function add(text) {
+  text = text.substr(4, text.length);
+  todoList.push(text);
 }
 
 // The following line starts the application
