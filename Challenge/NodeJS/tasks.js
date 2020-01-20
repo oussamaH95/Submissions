@@ -47,6 +47,11 @@ function onDataReceived(text) {
     list();
   } else if (text.startsWith("add")) {
     add(text);
+  } else if (text === "remove\n") {
+    remove();
+  } else if (text.startsWith("remove")) {
+    removeByNumber(text);
+  } else if (text.startsWith("remove")) {
   } else {
     unknownCommand(text);
   }
@@ -89,7 +94,17 @@ function list() {
 function add(text) {
   text = text.substr(4, text.length);
   todoList.push(text);
+  console.log("done!");
+}
+function remove() {
+  todoList.pop();
+  console.log("done!");
+}
+function removeByNumber(text) {
+  text = text.substr(7, text.length);
+  todoList.splice(parseInt(text - 1), 1);
+  console.log("done!");
 }
 
 // The following line starts the application
-startApp("Oussama  al Houssami");
+startApp("Oussama al Houssami");
