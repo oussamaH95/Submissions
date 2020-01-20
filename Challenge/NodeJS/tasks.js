@@ -36,8 +36,8 @@ function startApp(name) {
 function onDataReceived(text) {
   if (text === "quit\n" || text === "exit\n") {
     quit();
-  } else if (text === "hello\n") {
-    hello();
+  } else if (text.startsWith("hello")) {
+    hello(text);
   } else if (text === "help\n") {
     console.log("type 'quit' or 'exit' for exit\ntype 'hello' to say 'hello!'");
   } else {
@@ -61,8 +61,9 @@ function unknownCommand(c) {
  *
  * @returns {void}
  */
-function hello() {
-  console.log("hello!");
+
+function hello(text) {
+  console.log(text.trim() + "!\n");
 }
 
 /**
