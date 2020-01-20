@@ -11,5 +11,16 @@ create tablte graduate(
    age int(2),
    gender varchar2(6),
    Points int(4),
-   graduation varchar2(15)
+   graduation date
 )
+
+insert into graduates (Name,Age,Gender,Points)
+select Name,Age,Gender,Points from students where Name='Layal'
+
+select e.name,c.name,date from employees e, companies c where c.name = e.company
+
+update graduates set graduation = date();
+
+delete from students where name='Layal';
+
+
