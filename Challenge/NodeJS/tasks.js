@@ -41,7 +41,10 @@ function onDataReceived(text) {
     hello(text);
   } else if (text === "help\n") {
     console.log(
-      "type 'quit' or 'exit' for exit.\ntype 'hello' to say 'hello!'.\ntype hello with any thing to to get this text with '!'."
+      "type 'quit' or 'exit' for exit.\ntype 'hello' to say 'hello!'." +
+        "\ntype hello with any thing to to get this text with '!'." +
+        "\ntype 'list' to display it\ntype add to adding new task." +
+        "\ntype 'remove' to remove last task \nor remove with number to remove specific task by number of task."
     );
   } else if (text.startsWith("list\n")) {
     list();
