@@ -5,6 +5,8 @@
  * It prints a welcome line, and then a line with "----",
  * then nothing.
  *
+ * "help" it lists all the possible commands
+ *
  * @param  {string} name the name of the app
  * @returns {void}
  */
