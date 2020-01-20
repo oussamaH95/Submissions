@@ -36,6 +36,8 @@ function onDataReceived(text) {
     quit();
   } else if (text === "hello\n") {
     hello();
+  } else if (text === "help\n") {
+    console.log("type 'quit' or 'exit' for exit\ntype 'hello' to say 'hello!'");
   } else {
     unknownCommand(text);
   }
