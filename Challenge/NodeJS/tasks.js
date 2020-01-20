@@ -42,6 +42,8 @@ function onDataReceived(text) {
     console.log(
       "type 'quit' or 'exit' for exit.\ntype 'hello' to say 'hello!'.\ntype hello with any thing to to get this text with '!'."
     );
+  } else if (text.startsWith("list\n")) {
+    list();
   } else {
     unknownCommand(text);
   }
@@ -76,6 +78,10 @@ function hello(text) {
 function quit() {
   console.log("Quitting now, goodbye!");
   process.exit();
+}
+function list() {
+  todoList = ["wakeUp", "goToCodi", "getExperience", "getMoreExperience"];
+  for (let i = 1; i <= 4; i++) console.log(i + "- " + todoList[i - 1] + "\n");
 }
 
 // The following line starts the application
