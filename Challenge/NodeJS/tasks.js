@@ -48,13 +48,12 @@ function onDataReceived(text) {
     );
   } else if (text.startsWith("list\n")) {
     list();
-  } else if (text.startsWith("add")) {
+  } else if (text.startsWith("add ")) {
     add(text);
   } else if (text === "remove\n") {
     remove();
-  } else if (text.startsWith("remove")) {
+  } else if (text.startsWith("remove ")) {
     removeByNumber(text);
-  } else if (text.startsWith("remove")) {
   } else {
     unknownCommand(text);
   }
@@ -105,8 +104,11 @@ function remove() {
 }
 function removeByNumber(text) {
   text = text.substr(7, text.length);
-  todoList.splice(parseInt(text - 1), 1);
-  console.log("done!");
+  text = parseInt(text - 1);
+  if (text > -1 && text < todoList.length) {
+    todoList.splice(text, 1);
+    console.log("done!");
+  } else console.log("this namber not exist!");
 }
 
 // The following line starts the application
