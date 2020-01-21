@@ -48,8 +48,9 @@ function onDataReceived(text) {
     console.log(
       "type 'quit' or 'exit' for exit.\ntype 'hello' to say 'hello!'." +
         "\ntype hello with any thing to to get this text with '!'." +
-        "\ntype 'list' to display it\ntype add to adding new task." +
-        "\ntype 'remove' to remove last task \nor remove with number to remove specific task by number of task."
+        "\ntype 'list' to display it.\ntype add to adding new task." +
+        "\ntype 'remove' to remove last task or remove with number to remove specific task by number of task." +
+        "\ntype edit to edit last task or edit with task number to check or unchek specific task."
     );
   } else if (text.startsWith("list\n")) {
     console.log("----\nLIST\n----\n");
@@ -64,6 +65,8 @@ function onDataReceived(text) {
     edit(text);
   } else if (text.startsWith("check ")) {
     check(text);
+  } else if (text.startsWith("uncheck ")) {
+    unCheck(text);
   } else {
     unknownCommand(text);
   }
@@ -151,7 +154,7 @@ function check(text) {
   } else console.log("this number is not exsist!");
 }
 function unCheck(text) {
-  text = text.substr(6, text.length);
+  text = text.substr(8, text.length);
   text = parseInt(text) - 1;
   if (text < todoList.length && text >= 0) {
     todoList[text].done = false;
