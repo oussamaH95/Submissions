@@ -122,7 +122,7 @@ function removeByNumber(text) {
   if (text > -1 && text < todoList.length) {
     todoList.splice(text, 1);
     console.log("done!");
-  } else console.log("this number not exist!");
+  } else console.log("this number is not exist!");
 }
 function edit(text) {
   text = text.replace("\n", "");
@@ -144,7 +144,19 @@ function edit(text) {
 }
 function check(text) {
   text = text.substr(6, text.length);
+  text = parseInt(text) - 1;
+  if (text < todoList.length && text >= 0) {
+    todoList[text].done = true;
+    console.log("done!");
+  } else console.log("this number is not exsist!");
 }
-
+function unCheck(text) {
+  text = text.substr(6, text.length);
+  text = parseInt(text) - 1;
+  if (text < todoList.length && text >= 0) {
+    todoList[text].done = false;
+    console.log("done!");
+  } else console.log("this number is not exsist!");
+}
 // The following line starts the application
 startApp("Oussama al Houssami");
