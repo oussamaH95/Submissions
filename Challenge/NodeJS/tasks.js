@@ -10,7 +10,12 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
-todoList = ["wakeUp", "goToCodi", "getExperience", "getMoreExperience"];
+let todoList = [{ name: "txt", done: false }];
+todoList[0] = { name: "wake up", done: true };
+todoList[1] = { name: "go to codi", done: true };
+todoList[2] = { name: "get experience", done: false };
+todoList[3] = { name: "get more experience", done: false };
+
 function startApp(name) {
   process.stdin.resume();
   process.stdin.setEncoding("utf8");
@@ -55,10 +60,10 @@ function onDataReceived(text) {
     remove();
   } else if (text.startsWith("remove ")) {
     removeByNumber(text);
-  } else if (text === "edit") {
-    return error;
   } else if (text.startsWith("edit ")) {
     edit(text);
+  } else if (text.startsWith("check ")) {
+    check(text);
   } else {
     unknownCommand(text);
   }
@@ -95,12 +100,16 @@ function quit() {
   process.exit();
 }
 function list() {
-  for (let i = 1; i <= todoList.length; i++)
-    console.log(i + "- " + todoList[i - 1] + "\n");
+  let checksimble = "";
+  for (let i = 1; i <= todoList.length; i++) {
+    if (todoList[i - 1].done) checksimble = "[✓] ";
+    else checksimble = "[ ] ";
+    console.log(checksimble + i + "- " + todoList[i - 1].name + "\n");
+  }
 }
 function add(text) {
   text = text.substr(4, text.length);
-  todoList.push(text);
+  todoList[todoList.length] = { name: text };
   console.log("done!");
 }
 function remove() {
@@ -113,7 +122,7 @@ function removeByNumber(text) {
   if (text > -1 && text < todoList.length) {
     todoList.splice(text, 1);
     console.log("done!");
-  } else console.log("this namber not exist!");
+  } else console.log("this number not exist!");
 }
 function edit(text) {
   text = text.replace("\n", "");
@@ -121,19 +130,20 @@ function edit(text) {
   if (text[0] == "edit" && text[1] <= todoList.length && text[1] > 0) {
     let task = parseInt(text[1]) - 1;
     text = text.splice(2);
-    let container = "";
-    for (i = 0; i < text.length; i++) {
-      container += text[i];
-    }
-    todoList[task] = container;
+    container = "";
+    for (i = 0; i < text.length; i++) container += text[i];
+    todoList[task] = { name: container };
     console.log("done! replaced by task of number " + (task + 1));
   } else {
     text = text.splice(1);
-    let container = "";
+    container = "";
     for (i = 0; i < text.length; i++) container += text[i];
-    todoList[todoList.length - 1] = container;
+    todoList[todoList.length - 1] = { name: container };
     console.log("done! replaced by last task");
   }
+}
+function check(text) {
+  text = text.substr(6, text.length);
 }
 
 // The following line starts the application
