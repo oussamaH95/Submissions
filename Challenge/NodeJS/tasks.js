@@ -47,6 +47,7 @@ function onDataReceived(text) {
         "\ntype 'remove' to remove last task \nor remove with number to remove specific task by number of task."
     );
   } else if (text.startsWith("list\n")) {
+    console.log("----\nLIST\n----\n");
     list();
   } else if (text.startsWith("add ")) {
     add(text);
@@ -54,6 +55,10 @@ function onDataReceived(text) {
     remove();
   } else if (text.startsWith("remove ")) {
     removeByNumber(text);
+  } else if (text === "edit") {
+    return error;
+  } else if (text.startsWith("edit ")) {
+    edit(text);
   } else {
     unknownCommand(text);
   }
@@ -109,6 +114,26 @@ function removeByNumber(text) {
     todoList.splice(text, 1);
     console.log("done!");
   } else console.log("this namber not exist!");
+}
+function edit(text) {
+  text = text.replace("\n", "");
+  text = text.split(" ");
+  if (text[0] == "edit" && text[1] <= todoList.length && text[1] > 0) {
+    let task = parseInt(text[1]) - 1;
+    text = text.splice(2);
+    let container = "";
+    for (i = 0; i < text.length; i++) {
+      container += text[i];
+    }
+    todoList[task] = container;
+    console.log("done! replaced by task of number " + (task + 1));
+  } else {
+    text = text.splice(1);
+    let container = "";
+    for (i = 0; i < text.length; i++) container += text[i];
+    todoList[todoList.length - 1] = container;
+    console.log("done! replaced by last task");
+  }
 }
 
 // The following line starts the application
