@@ -5,7 +5,12 @@ let t = new Date();
 let h = t.getHours();
 let m = t.getMinutes();
 t = h + ":" + m;
-
+const movies = [
+  { title: "Jaws", year: 1975, rating: 8 },
+  { title: "Avatar", year: 2009, rating: 7.8 },
+  { title: "Brazil", year: 1985, rating: 8 },
+  { title: "الإرهاب والكباب‎", year: 1992, rating: 6.2 }
+];
 //routes
 app.get("/", (req, res) => {
   res.send("ok :)");
@@ -51,25 +56,25 @@ app.get("/search", (req, res) => {
 app.listen(port, () => {
   console.log(`server is running at: http://localhost:${port}/`);
 });
-app.get("movies/crate", (req, res) => {
+app.get("/movies/create", (req, res) => {
   res.send({
     status: 200,
     message: "this is create page"
   });
 });
-app.get("movies/read", (req, res) => {
+app.get("/movies/read", (req, res) => {
   res.send({
     status: 200,
-    message: "this is read page"
+    message: movies
   });
 });
-app.get("movies/update", (req, res) => {
+app.get("/movies/update", (req, res) => {
   res.send({
     status: 200,
     message: "this is update page"
   });
 });
-app.get("movies/delete", (req, res) => {
+app.get("/movies/delete", (req, res) => {
   res.send({
     status: 200,
     message: "this is delete page"
