@@ -1,3 +1,10 @@
+let todoList;
+let fs = require("fs");
+fs.readFile("./database.json", (err, data) => {
+  if (err) throw err;
+  todoList = JSON.parse(data);
+});
+
 /**
  * Starts the application
  * This is the function that is run when the app starts
@@ -10,12 +17,6 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
-let todoList = [{ name: "txt", done: false }];
-todoList[0] = { name: "wake up", done: true };
-todoList[1] = { name: "go to codi", done: true };
-todoList[2] = { name: "get experience", done: false };
-todoList[3] = { name: "get more experience", done: false };
-
 function startApp(name) {
   process.stdin.resume();
   process.stdin.setEncoding("utf8");
@@ -40,11 +41,12 @@ function startApp(name) {
  * @returns {void}
  */
 function onDataReceived(text) {
-  if (text === "quit\n" || text === "exit\n") {
+  text = text.replace("\n", "");
+  if (text === "quit\n" || text === "exit") {
     quit();
   } else if (text.startsWith("hello")) {
     hello(text);
-  } else if (text === "help\n") {
+  } else if (text === "help") {
     console.log(
       "type 'quit' or 'exit' for exit.\ntype 'hello' to say 'hello!'." +
         "\ntype hello with any thing to to get this text with '!'." +
@@ -52,12 +54,12 @@ function onDataReceived(text) {
         "\ntype 'remove' to remove last task or remove with number to remove specific task by number of task." +
         "\ntype edit to edit last task or edit with task number to check or unchek specific task."
     );
-  } else if (text.startsWith("list\n")) {
+  } else if (text === "list") {
     console.log("----\nLIST\n----\n");
     list();
   } else if (text.startsWith("add ")) {
     add(text);
-  } else if (text === "remove\n") {
+  } else if (text === "remove") {
     remove();
   } else if (text.startsWith("remove ")) {
     removeByNumber(text);
@@ -99,8 +101,13 @@ function hello(text) {
  * @returns {void}
  */
 function quit() {
-  console.log("Quitting now, goodbye!");
-  process.exit();
+  let data = JSON.stringify(todoList);
+  fs.writeFile("./database.json", data, err => {
+    if (err) throw err;
+    console.log("The file has been saved!");
+    console.log("Quitting now, goodbye!");
+    process.exit();
+  });
 }
 function list() {
   let checksimble = "";
