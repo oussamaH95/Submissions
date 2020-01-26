@@ -137,11 +137,12 @@ app.get("/movies/add", (req, res) => {
   let movieTitle = req.query.title;
   let movieYear = req.query.year;
   let movieRating = req.query.rating;
+  if (movieRating > 10 || movieRating < 0) movieRating = 4;
   if (movieTitle != null && movieYear <= 9999 && movieYear > 999) {
     movies[movies.length] = {
       title: movieTitle,
       year: movieYear,
-      rating: movieRating,
+      rating: parseInt(movieRating),
       id: movies.length + 1
     };
     res.send(movies.map(item => item));
@@ -167,9 +168,24 @@ app.get("/movies/delete/id/:id", (req, res) => {
       message: "the movie <ID> does not exist"
     });
 });
-app.get("/movies/update", (req, res) => {
-  res.send({
-    status: 200,
-    message: "this is delete page"
-  });
+app.get("/movies/update/:id", (req, res) => {
+  let movieId = req.params.id;
+  let movieTitle = req.query.title;
+  let movieYear = req.query.year;
+  let movieRating = req.query.rating;
+  if (movieRating > 10 || movieRating < 0) movieRating = 4;
+  if (movieTitle != null && movieYear <= 9999 && movieYear > 999) {
+    movies[movieId - 1] = {
+      title: movieTitle,
+      year: movieYear,
+      rating: parseInt(movieRating),
+      id: parseInt(movieId)
+    };
+    res.send(movies.map(item => item));
+  } else
+    res.send({
+      status: 403,
+      error: true,
+      message: "you cannot update a movie without providing a title and a year"
+    });
 });
