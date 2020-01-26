@@ -152,21 +152,22 @@ app.get("/movies/add", (req, res) => {
       message: "you cannot create a movie without providing a title and a year"
     });
 });
-app.get("/movies/update/id/:id", (req, res) => {
+app.get("/movies/delete/id/:id", (req, res) => {
   let id = req.params.id;
-  for (let i = 0; i < movies.length; i++)
-    if (id == movies[i].id)
-      res.send({
-        status: 200,
-        data: movies[i]
-      });
-  res.send({
-    status: 404,
-    error: true,
-    message: "the movie <ID> does not exist"
-  });
+  if (id > 0 && id < movies.length) {
+    movies.splice(id - 1, 1);
+    res.send({
+      status: 200,
+      message: "deleted..."
+    });
+  } else
+    res.send({
+      status: 404,
+      error: true,
+      message: "the movie <ID> does not exist"
+    });
 });
-app.get("/movies/delete", (req, res) => {
+app.get("/movies/update", (req, res) => {
   res.send({
     status: 200,
     message: "this is delete page"
