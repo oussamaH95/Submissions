@@ -1,0 +1,154 @@
+@font-face {
+  font-family: myFont;
+  src: url(myFont.ttf);
+}
+body {
+  background-image: url(herringbone.png);
+  font-family: myFont;
+  font-size: 20pt;
+  font-weight: bold;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+li a:hover {
+  background-color: #111;
+}
+
+.img1 {
+  width: 100%;
+  height: 250px;
+  display: block;
+}
+.p1 {
+  margin: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  width: 50%;
+}
+main {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+main.contact {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.item {
+  height: 350px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.item > p {
+  width: 500px;
+  text-align: justify;
+}
+.item > img {
+  width: 400px;
+  height: 200px;
+  margin-left: 25px;
+}
+footer {
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+}
+footer:hover {
+  color: red;
+}
+@media only screen and (max-width: 1000px) {
+  .item > img {
+    width: 250px;
+    height: 140px;
+    margin-left: 0px;
+  }
+  .item {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .item > p {
+    width: 100%;
+    text-align: justify;
+  }
+  .p1 {
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    width: 80%;
+  }
+  footer {
+    margin-top: 50px;
+  }
+}
+footer.contact {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #333;
+}
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
